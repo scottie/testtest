@@ -1,0 +1,26 @@
+[Unit]
+Description=Zix's distributed currency daemon
+After=network.target
+
+[Service]
+User=zix
+Group=zix
+
+Type=forking
+PIDFile=/var/lib/zixd/zixd.pid
+
+ExecStart=/usr/bin/zixd -daemon -pid=/var/lib/zixd/zixd.pid \
+          -conf=/etc/zix/zix.conf -datadir=/var/lib/zixd
+
+ExecStop=-/usr/bin/zix-cli -conf=/etc/zix/zix.conf \
+         -datadir=/var/lib/zixd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
