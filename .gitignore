@@ -30,6 +30,8 @@ src/zix-cli
 src/zix-tx
 src/test/test_zix
 src/qt/test/test_zix-qt
+i686-w64-mingw32
+x86_64-pc-linux-gnu
 
 # autoreconf
 Makefile.in
